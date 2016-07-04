@@ -1,5 +1,5 @@
 'use strict'
-// const clone = require('clone')
+const clone = require('clone')
 const CONST = require('./Constants.js')
 const { Squid } = require('./Squid.js')
 
@@ -10,14 +10,20 @@ class State {
     this.inputs = inputs
   }
 
-  update () {
-    squids.forEach((squid) => squid.update())
+  update (dt = CONST.UPDATE_TIME) {
+    const newState = new State(clone(this.powerups), clone(this.squids), clone(this.inputs))
+    newState.squids.forEach((squid) => squid.update(dt))
+    return newState
   }
 
   addSquid (squidId) {
     const squid = new Squid(squidId)
     this.squids[squidId] = squid
     this.inputs[squidId] = null
+  }
+
+  setCommand(squidId, command) {
+    this.inputs[squidId] = command
   }
 }
 exports.State = State

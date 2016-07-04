@@ -4,9 +4,9 @@ const { Bullet } = require('./Bullet.js')
 const Vec2 = require('vec2')
 
 class Squid {
-  constructor (squidId) {
-    this.dir = Vec2(0, 0).normalize()
-    this.position = Vec2(0, 0)
+  constructor (squidId, direction = Vec2(0,0), position = Vec2(0,0)) {
+    this.direction = direction.normalize()
+    this.position = position
     this.speed = CONST.SQUID_SPEED
     this.id = squidId
     this.command = null
@@ -22,7 +22,7 @@ class Squid {
 
   shoot (dir) {
     // Spawn bullet following the dir dir
-    // Sth like new Bullet(dir, shooterId)
+    // Sth like new Bullet(dir, position, shooterId)
     // shooterId indicates which squid shoot the bullet
     const bullet = new Bullet(dir, this.position, this.id)
     var freeIdx = 0
@@ -34,7 +34,7 @@ class Squid {
   */
   update (dt = CONST.UPDATE_TIME) {
     this.position = this.position.add(this.direction.multiply(this.speed * dt))
-    this.bullets.forEach((bullet) => bullet.update())
+    this.bullets.forEach((bullet) => bullet.update(dt))
   }
 }
 exports.Squid = Squid
