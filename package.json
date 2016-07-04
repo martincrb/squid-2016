@@ -1,0 +1,14 @@
+{
+  "name": "squid-2016",
+  "version": "0.0.1",
+  "description": "Game where squids shoot each other!",
+  "main": "src/server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "standard"
+  },
+  "author": "Mart�in Cristobal",
+  "license": "ISC"
+}
