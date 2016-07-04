@@ -7,8 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "standard"
+    "test": "tape test/**/*.spec.js"
   },
   "author": "Mart�in Cristobal",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "standard": "^7.1.2"
+  }
 }
