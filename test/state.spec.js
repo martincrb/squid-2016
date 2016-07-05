@@ -1,5 +1,4 @@
 const test = require('tape')
-const Vec2 = require('vec2')
 const { State } = require('../src/State.js')
 
 test('State :: Basics', (t) => {
@@ -8,7 +7,7 @@ test('State :: Basics', (t) => {
   t.equal(state.squids.length, 1,
     'Should have one squid')
   const state2 = state.update(0)
-  t.notOk(state == state2,
+  t.notOk(state === state2,
     'Should be different state ref')
   t.equal(state2.squids.length, 1,
     'Should still have one squid')

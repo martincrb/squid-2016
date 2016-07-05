@@ -8,7 +8,6 @@ test('Squid :: Basics', (t) => {
   t.equal(squidId, squid.id,
     'Squid should have the id passed to the constructor')
   const direction = new Vec2(10, 5).normalize()
-  const position = new Vec2(0, 0)
 
   squid.setDirection(direction)
   t.deepEqual(squid.direction, direction,
@@ -27,7 +26,7 @@ test('Squid :: Shoot & Bullets', (t) => {
   squid.position = position
   squid.setDirection(direction)
 
-  const bullet_direction = new Vec2(1,1).normalize()
+  const bullet_direction = new Vec2(1, 1).normalize()
   squid.shoot(bullet_direction)
   t.equal(squid.bullets.length, 1,
     'Shoot should add a bullet to the bullets array')
