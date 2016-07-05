@@ -22,7 +22,7 @@ class State {
     this.inputs[squidId] = null
   }
 
-  setCommand(squidId, command) {
+  setCommand (squidId, command) {
     this.inputs[squidId] = command
   }
 }
