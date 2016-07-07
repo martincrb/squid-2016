@@ -7,11 +7,14 @@
     "test": "test"
   },
   "scripts": {
-    "test": "tape test/**/*.spec.js"
+    "build": "browserify src/client.js -o dist/bundle.js && (echo 'go es!' || echo 'built!')",
+    "test": "tape test/**/*.spec.js | tap-spec"
   },
   "author": "Mart�in Cristobal",
   "license": "ISC",
   "devDependencies": {
-    "standard": "^7.1.2"
+    "standard": "^7.1.2",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
   }
 }
