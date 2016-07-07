@@ -1,5 +1,6 @@
 'use strict'
 const CONST = require('./Constants.js')
+const Behaviour = require('./Behaviours.js')
 const { Bullet } = require('./Bullet.js')
 const Vec2 = require('vec2')
 
@@ -11,13 +12,14 @@ class Squid {
     this.id = squidId
     this.command = null
     this.bullets = []
+    this.behaviour = Behaviour.IDLE
   }
 
-  /*
-  * this.direction is an object {x: 0, y:0}
-  */
   setDirection (dir) {
-    this.direction = dir.normalize()
+    if (this.behaviour === Behaviour.IDLE) {
+      this.direction = dir.normalize()
+      this.behaviour = Behaviour.MOVE
+    }
   }
 
   shoot (dir) {
@@ -33,7 +35,15 @@ class Squid {
   * each tick squid updates using current pos, speed and direction
   */
   update (dt = CONST.UPDATE_TIME) {
-    this.position = this.position.add(this.direction.multiply(this.speed * dt))
+    if (this.behaviour === Behaviour.MOVE) {
+      this.position = this.position.add(this.direction.multiply(this.speed * dt))
+      this.speed -= CONST.SQUID_SPEED_DECAY
+      if (this.speed <= CONST.SPEED_LIMIT) {
+        console.log('Stopped!')
+        this.behaviour = Behaviour.IDLE
+        this.speed = CONST.SQUID_SPEED
+      }
+    }
     this.bullets.forEach((bullet) => bullet.update(dt))
   }
 }

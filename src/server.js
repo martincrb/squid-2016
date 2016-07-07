@@ -28,10 +28,12 @@ io.on('connection', function (socket) {
   })
 
   socket.on('shoot', function (direction) {
+    console.log(`${socket.id} shot`, direction)
     game.onShoot(socket, direction)
   })
 
   socket.on('disconnect', function () {
+    console.log(`${socket.id} left`)
     game.onPlayerLeave(socket)
   })
 

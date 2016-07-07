@@ -12,7 +12,11 @@ class State {
 
   update (dt = CONST.UPDATE_TIME) {
     const newState = new State(clone(this.powerups), clone(this.squids), clone(this.inputs))
-    newState.squids.forEach((squid) => squid.update(dt))
+    for (let i = 0; i < newState.squids.length; ++i) {
+      if (newState.squids[i]) {
+        newState.squids[i].update(dt)
+      }
+    }
     return newState
   }
 
